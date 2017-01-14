@@ -10,7 +10,6 @@ Dependencies
 
 * numpy
 * scipy
-* scikit-image
 
 References
 ----------
@@ -20,18 +19,20 @@ References
    Biomedical Applications in Molecular, Structural, and Functional Imaging.
    2017. DOI:[in print]
 """
+__version__ = 0.1
 
 __all__ = ['erode_pvm',
            'dilate_pvm',
            'open_pvm',
            'close_pvm',
-           # 'tophat_pvm',
-           # 'bottomhat_pvm',
            'disk',
+           'disk_simple',
+           'sphere',
+           'sphere_simple',
            ]
 
 from .base_pvm import erode_pvm, dilate_pvm
 
 from .extended_pvm import open_pvm, close_pvm  #, tophat_pvm, bottomhat_pvm
 
-from .strel_pvm import disk
+from .strel_pvm import disk, disk_simple, sphere, sphere_simple
