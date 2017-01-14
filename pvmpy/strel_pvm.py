@@ -1,3 +1,5 @@
+from __future__ import division, absolute_import, print_function
+
 import numpy as np
 
 
@@ -105,7 +107,7 @@ def disk_simple(radius, precision=0.0001):
         Circular partial volume structuring element with specified radius.
     """
     center = np.ceil(radius)
-    rr, cc = np.mgrid[0:center*2, 0:center*2]
+    rr, cc = np.mgrid[0:center*2 + 1, 0:center*2 + 1]
 
     return disk(rr, cc, (center, center), radius, precision)
 
@@ -143,7 +145,7 @@ def _sphere_rectprism_pvol(center, radius, origin, deltas, samples=10000):
                           size=samples)
     c = np.random.uniform(low=origin[1], high=origin[1] + deltas[1],
                           size=samples)
-    z = np.random.unitofm(low=origin[2], high=origin[2] + deltas[2],
+    z = np.random.uniform(low=origin[2], high=origin[2] + deltas[2],
                           size=samples)
 
     levelset = ((r - center[0])**2 +
@@ -210,8 +212,11 @@ def sphere(rr, cc, zz, center, radius, precision=0.0001):
                   ccc[it.multi_index[1]],
                   zzz[it.multi_index[2]])
 
-        it[0] = _sphere_rectprism_pvol(center, radius, corner, deltas,
-                                       samples=int(1 / precision))
+        sphere[it.multi_index] = _sphere_rectprism_pvol(
+            center, radius, corner, deltas,
+            samples=int(1 / precision))
+
+        it.iternext()
 
     return sphere
 
@@ -235,6 +240,7 @@ def sphere_simple(radius, precision=0.0001):
         Spherical partial volume structuring element with specified radius.
     """
     center = np.ceil(radius)
-    rr, cc, zz = np.mgrid[0:center*2, 0:center*2, 0:center*2]
+    extent = center*2 + 1
+    rr, cc, zz = np.mgrid[0:extent, 0:extent, 0:extent]
 
     return sphere(rr, cc, zz, (center, center, center), radius, precision)
