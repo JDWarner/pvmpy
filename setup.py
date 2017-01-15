@@ -34,7 +34,7 @@ else:
 builtins.__PVMPY_SETUP__ = True
 
 
-with open('pvmpy/__init__.py') as fid:
+with open('./pvmpy/__init__.py') as fid:
     for line in fid:
         if line.startswith('__version__'):
             VERSION = line.strip().split()[-1][1:-1]
