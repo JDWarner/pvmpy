@@ -29,13 +29,13 @@ def dilate_pvm(image, selem):
     subsequent to this in your workflow, return to boolean only after all
     are complete.
 
-    Uses SciPy.NDImage's `convolve` with `mode='reflect'` under
+    Uses SciPy.NDImage's `correlate` with `mode='reflect'` under
     the hood.
     """
     assert len(image.shape) == len(selem.shape), "Image and region must have " \
                                                  "identical dimensionality."
-    dilated = ndi.convolve(image.astype(np.float64), selem.astype(np.float64),
-                           mode='reflect')
+    dilated = ndi.correlate(image.astype(np.float64), selem.astype(np.float64),
+                            mode='reflect')
     return np.minimum(dilated, 1.0)
 
 
@@ -64,13 +64,13 @@ def erode_pvm(image, selem):
     subsequent to this in your workflow, return to boolean only after all
     are complete.
 
-    Uses SciPy.NDImage's `convolve` with `mode='reflect'` under
+    Uses SciPy.NDImage's `correlate` with `mode='reflect'` under
     the hood.
     """
     assert len(image.shape) == len(selem.shape), "Image and region must have " \
                                                  "identical dimensionality."
-    eroded = ndi.convolve(1 - image.astype(np.float64), selem.astype(np.float64),
-                          mode='reflect')
+    eroded = ndi.correlate(1 - image.astype(np.float64), selem.astype(np.float64),
+                           mode='reflect')
     eroded = 1. - eroded  # Invert
 
     return np.maximum(eroded, 0.0)
