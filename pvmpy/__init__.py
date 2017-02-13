@@ -19,7 +19,7 @@ References
    Biomedical Applications in Molecular, Structural, and Functional Imaging.
    2017. DOI:[in print]
 """
-__version__ = '1.0'
+__version__ = '1.1'
 
 __all__ = ['erode_pvm',
            'dilate_pvm',
