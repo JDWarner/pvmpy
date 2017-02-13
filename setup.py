@@ -10,8 +10,8 @@ DESCRIPTION         = 'Partial Volume Morphology'
 LONG_DESCRIPTION    = descr
 MAINTAINER          = 'Joshua Warner'
 MAINTAINER_EMAIL    = 'joshua.dale.warner@gmail.com'
-LICENSE             = 'GPL v.3'
-URL                 = 'https://pypi.python.org/pypi/pvmpy'
+LICENSE             = 'Modified BSD'
+URL                 = 'https://github.com/JDWarner/pvmpy'
 DOWNLOAD_URL        = 'https://github.com/JDWarner/pvmpy'
 
 import os
@@ -120,7 +120,7 @@ if __name__ == "__main__":
             'Environment :: Console',
             'Intended Audience :: Developers',
             'Intended Audience :: Science/Research',
-            'License :: OSI Approved :: GPL v3',
+            'License :: OSI Approved :: BSD License',
             'Programming Language :: Python',
             'Programming Language :: Python :: 3',
             'Topic :: Scientific/Engineering',
